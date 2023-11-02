@@ -1,0 +1,19 @@
+def findCrossoverIndexHelper(x,y,left,right):
+    mid = (left+right)//2
+    if x[mid] > y[mid] and x[mid+1] < y[mid+1]:
+        return mid
+    elif x[mid] > y[mid] and x[mid+1] >y[mid+1]:
+        return findCrossoverIndexHelper(x,y,mid+1,right)
+    else:
+        return findCrossoverIndexHelper(x,y,left, mid-1)
+
+
+
+def findCrossoverIndex(x, y):
+    assert(len(x) == len(y))
+    assert(x[0] > y[0])
+    n = len(x)
+    assert(x[n-1] < y[n-1]) # Note: this automatically ensures n >= 2 why?
+    # your code here
+    j1 = findCrossoverIndexHelper(x, y, 0, n-1)
+    return j1
